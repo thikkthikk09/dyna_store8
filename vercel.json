@@ -1,0 +1,28 @@
+{
+  "functions": {
+    "api/**/*.js": {
+      "maxDuration": 15
+    }
+  },
+  "rewrites": [
+    { "source": "/api/env-config", "destination": "/api/env-config" },
+    { "source": "/api/renew-token", "destination": "/api/renew-token" },
+    { "source": "/api/check-md5", "destination": "/api/check-md5" },
+    { "source": "/api/webhook", "destination": "/api/webhook" },
+    { "source": "/api/payment/check", "destination": "/api/payment/check" },
+    { "source": "/api/(.*)", "destination": "/api/$1" }
+  ],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET, POST, OPTIONS" },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type, Authorization, X-Requested-With, X-MD5, X-Payment-MD5"
+        }
+      ]
+    }
+  ]
+}
